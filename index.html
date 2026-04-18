@@ -27,8 +27,8 @@
       }
       #stage {
         position: relative;
-        width: 1920px;
-        height: 1080px;
+        width: 1080px;
+        height: 1920px;
         overflow: hidden;
         background: radial-gradient(circle at 20% 10%, rgba(129,230,255,0.1), transparent 25%), linear-gradient(180deg, #10182f 0%, #050816 100%);
       }
@@ -41,75 +41,71 @@
       }
       .beam {
         position: absolute;
-        inset: auto;
-        width: 900px;
-        height: 900px;
         border-radius: 999px;
-        filter: blur(80px);
+        filter: blur(90px);
         opacity: 0.18;
       }
-      .beam.a { top: -240px; left: -180px; background: var(--accent); }
-      .beam.b { bottom: -320px; right: -160px; background: var(--accent2); }
+      .beam.a { top: -260px; left: -180px; width: 700px; height: 700px; background: var(--accent); }
+      .beam.b { bottom: -260px; right: -180px; width: 760px; height: 760px; background: var(--accent2); }
       .frame {
         position: absolute;
         inset: 0;
-        padding: 92px 110px;
+        padding: 110px 72px 120px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
-      .eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 0.28em;
-        font-size: 28px;
-        color: var(--muted);
-      }
-      .headline {
-        max-width: 1500px;
-        font-size: 128px;
-        font-weight: 800;
-        line-height: 0.95;
-        letter-spacing: -0.05em;
-      }
-      .sub {
-        max-width: 1160px;
-        font-size: 44px;
-        line-height: 1.22;
-        color: var(--muted);
-      }
       .stack {
         display: flex;
         flex-direction: column;
-        gap: 22px;
+        gap: 26px;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 26px;
+        color: var(--muted);
+      }
+      .headline {
+        font-size: 106px;
+        font-weight: 900;
+        line-height: 0.92;
+        letter-spacing: -0.06em;
+      }
+      .sub {
+        font-size: 42px;
+        line-height: 1.2;
+        color: var(--muted);
       }
       .tag-row {
         display: flex;
-        gap: 18px;
+        gap: 14px;
         flex-wrap: wrap;
       }
       .tag {
-        padding: 16px 24px;
+        padding: 14px 20px;
         border-radius: 999px;
         border: 1px solid rgba(255,255,255,0.12);
         background: rgba(255,255,255,0.05);
-        font-size: 34px;
+        font-size: 28px;
         color: var(--text);
       }
       .tag.bad { border-color: rgba(255,107,107,0.4); color: #ffd0d0; }
       .tag.good { border-color: rgba(98,242,187,0.35); color: #cbffef; }
       .bottom {
         display: flex;
-        justify-content: space-between;
-        align-items: end;
+        flex-direction: column;
+        gap: 28px;
+        align-items: flex-start;
       }
       .footer-note {
-        font-size: 30px;
+        font-size: 28px;
         color: var(--muted);
       }
       .big-call {
-        font-size: 118px;
+        font-size: 92px;
         font-weight: 900;
-        line-height: 0.95;
+        line-height: 0.92;
         letter-spacing: -0.06em;
       }
       .accent { color: var(--accent); }
@@ -120,7 +116,7 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 16px;
+        height: 18px;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
       }
       .cover {
@@ -134,11 +130,11 @@
   <body>
     <div
       id="stage"
-      data-composition-id="uncapping-the-house"
+      data-composition-id="uncapping-the-house-mobile"
       data-start="0"
       data-duration="20"
-      data-width="1920"
-      data-height="1080"
+      data-width="1080"
+      data-height="1920"
       data-fps="30"
     >
       <div class="grain"></div>
@@ -149,15 +145,15 @@
         <div class="stack">
           <div class="eyebrow">housing crisis</div>
           <div class="headline">Housing got expensive because <span class="danger">supply got capped</span>.</div>
-          <div class="sub">This wasn’t inevitable. It was designed — one limit, one rule, one veto at a time.</div>
+          <div class="sub">Not inevitable. Not natural. Designed.</div>
         </div>
         <div class="bottom">
-          <div class="footer-note">Demand kept rising. Homes didn’t.</div>
           <div class="tag-row">
             <div class="tag bad">scarcity</div>
             <div class="tag bad">delays</div>
             <div class="tag bad">higher prices</div>
           </div>
+          <div class="footer-note">Demand kept rising. Homes didn’t.</div>
         </div>
       </section>
 
@@ -165,7 +161,7 @@
         <div class="stack">
           <div class="eyebrow">the cap</div>
           <div class="headline">Zoning. Parking minimums. Height limits. Process theater.</div>
-          <div class="sub">We stacked restrictions on top of each other until building became a punishment.</div>
+          <div class="sub">We buried housing under rules until building felt impossible.</div>
         </div>
         <div class="tag-row">
           <div class="tag bad">fewer homes</div>
@@ -177,11 +173,11 @@
       <section id="scene-3" class="frame" data-start="9" data-duration="5" data-track-index="0">
         <div class="stack">
           <div class="eyebrow">cause and effect</div>
-          <div class="headline">We strangled the pipeline — then acted surprised when prices exploded.</div>
-          <div class="sub">You can’t ban growth and still expect abundance.</div>
+          <div class="headline">We strangled the pipeline — then acted shocked when prices exploded.</div>
+          <div class="sub">You can’t ban abundance and expect affordability.</div>
         </div>
         <div class="bottom">
-          <div class="big-call"><span class="danger">Cap supply</span> → <span class="danger">Spike prices</span></div>
+          <div class="big-call"><span class="danger">Cap supply</span><br/>→ <span class="danger">Spike prices</span></div>
           <div class="footer-note">It’s not mysterious. It’s math.</div>
         </div>
       </section>
@@ -190,7 +186,7 @@
         <div class="stack">
           <div class="eyebrow">the fix</div>
           <div class="headline"><span class="accent">Uncap the house.</span><br /><span class="good">Build more homes.</span></div>
-          <div class="sub">Lower the pressure. Let prices cool. Let neighborhoods grow. Let cities breathe.</div>
+          <div class="sub">Lower the pressure. Cool prices. Let cities breathe.</div>
         </div>
         <div class="bottom">
           <div class="tag-row">
@@ -216,10 +212,10 @@
         const start = Number(scene.dataset.start || 0);
         const duration = Number(scene.dataset.duration || 0);
         scene.style.opacity = '0';
-        scene.style.transform = 'translateY(36px) scale(0.985)';
+        scene.style.transform = 'translateY(42px) scale(0.985)';
         scene.animate(
           [
-            { opacity: 0, transform: 'translateY(36px) scale(0.985)' },
+            { opacity: 0, transform: 'translateY(42px) scale(0.985)' },
             { opacity: 1, transform: 'translateY(0px) scale(1)', offset: 0.18 },
             { opacity: 1, transform: 'translateY(0px) scale(1)', offset: 0.82 },
             { opacity: index === scenes.length - 1 ? 1 : 0, transform: index === scenes.length - 1 ? 'translateY(0px) scale(1)' : 'translateY(-18px) scale(1.01)' }
@@ -234,15 +230,8 @@
       });
 
       progress.animate(
-        [
-          { width: '0%' },
-          { width: '100%' }
-        ],
-        {
-          duration: totalDuration * 1000,
-          fill: 'forwards',
-          easing: 'linear'
-        }
+        [{ width: '0%' }, { width: '100%' }],
+        { duration: totalDuration * 1000, fill: 'forwards', easing: 'linear' }
       );
 
       cover.animate(
@@ -252,11 +241,7 @@
           { opacity: 0, offset: 0.94 },
           { opacity: 1 }
         ],
-        {
-          duration: totalDuration * 1000,
-          fill: 'forwards',
-          easing: 'ease'
-        }
+        { duration: totalDuration * 1000, fill: 'forwards', easing: 'ease' }
       );
     </script>
   </body>

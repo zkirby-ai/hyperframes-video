@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Uncapping the House</title>
     <style>
       :root {
@@ -20,37 +20,53 @@
         margin: 0;
         width: 100%;
         height: 100%;
+        overflow: hidden;
+        background: #050816;
         font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-        background: radial-gradient(circle at top left, rgba(129,230,255,0.16), transparent 24%), linear-gradient(180deg, var(--bg2), var(--bg));
-        color: var(--text);
+      }
+      body {
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at top left, rgba(129,230,255,0.16), transparent 24%),
+          linear-gradient(180deg, var(--bg2), var(--bg));
+      }
+      .phone-shell {
+        position: relative;
+        width: 100vw;
+        height: 100dvh;
+        display: grid;
+        place-items: center;
         overflow: hidden;
       }
       #stage {
         position: relative;
-        width: 1080px;
-        height: 1920px;
+        width: min(100vw, calc(100dvh * 9 / 16));
+        height: min(100dvh, calc(100vw * 16 / 9));
+        aspect-ratio: 9 / 16;
         overflow: hidden;
         background: radial-gradient(circle at 20% 10%, rgba(129,230,255,0.1), transparent 25%), linear-gradient(180deg, #10182f 0%, #050816 100%);
+        color: var(--text);
       }
       .grain {
         position: absolute;
         inset: 0;
         opacity: 0.08;
         background-image: radial-gradient(rgba(255,255,255,0.45) 0.6px, transparent 0.6px);
-        background-size: 12px 12px;
+        background-size: 1.1% 0.65%;
       }
       .beam {
         position: absolute;
         border-radius: 999px;
-        filter: blur(90px);
+        filter: blur(8vw);
         opacity: 0.18;
       }
-      .beam.a { top: -260px; left: -180px; width: 700px; height: 700px; background: var(--accent); }
-      .beam.b { bottom: -260px; right: -180px; width: 760px; height: 760px; background: var(--accent2); }
+      .beam.a { top: -14%; left: -18%; width: 64%; height: 34%; background: var(--accent); }
+      .beam.b { bottom: -12%; right: -18%; width: 70%; height: 38%; background: var(--accent2); }
       .frame {
         position: absolute;
         inset: 0;
-        padding: 110px 72px 120px;
+        padding: max(env(safe-area-inset-top), 5.5vh) 6.6vw max(env(safe-area-inset-bottom), 6vh);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -58,36 +74,37 @@
       .stack {
         display: flex;
         flex-direction: column;
-        gap: 26px;
+        gap: 1.4vh;
       }
       .eyebrow {
         text-transform: uppercase;
         letter-spacing: 0.24em;
-        font-size: 26px;
+        font-size: clamp(10px, 1.35vw, 14px);
         color: var(--muted);
       }
       .headline {
-        font-size: 106px;
+        font-size: clamp(34px, 7.7vw, 78px);
         font-weight: 900;
         line-height: 0.92;
         letter-spacing: -0.06em;
       }
       .sub {
-        font-size: 42px;
-        line-height: 1.2;
+        font-size: clamp(16px, 3.15vw, 30px);
+        line-height: 1.18;
         color: var(--muted);
+        max-width: 92%;
       }
       .tag-row {
         display: flex;
-        gap: 14px;
+        gap: 10px;
         flex-wrap: wrap;
       }
       .tag {
-        padding: 14px 20px;
+        padding: 10px 14px;
         border-radius: 999px;
         border: 1px solid rgba(255,255,255,0.12);
         background: rgba(255,255,255,0.05);
-        font-size: 28px;
+        font-size: clamp(12px, 2.2vw, 20px);
         color: var(--text);
       }
       .tag.bad { border-color: rgba(255,107,107,0.4); color: #ffd0d0; }
@@ -95,15 +112,15 @@
       .bottom {
         display: flex;
         flex-direction: column;
-        gap: 28px;
+        gap: 1.8vh;
         align-items: flex-start;
       }
       .footer-note {
-        font-size: 28px;
+        font-size: clamp(14px, 2.5vw, 22px);
         color: var(--muted);
       }
       .big-call {
-        font-size: 92px;
+        font-size: clamp(30px, 6.5vw, 68px);
         font-weight: 900;
         line-height: 0.92;
         letter-spacing: -0.06em;
@@ -116,7 +133,8 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 18px;
+        height: 0.9vh;
+        min-height: 6px;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
       }
       .cover {
@@ -128,78 +146,80 @@
     </style>
   </head>
   <body>
-    <div
-      id="stage"
-      data-composition-id="uncapping-the-house-mobile"
-      data-start="0"
-      data-duration="20"
-      data-width="1080"
-      data-height="1920"
-      data-fps="30"
-    >
-      <div class="grain"></div>
-      <div class="beam a"></div>
-      <div class="beam b"></div>
+    <div class="phone-shell">
+      <div
+        id="stage"
+        data-composition-id="uncapping-the-house-mobile"
+        data-start="0"
+        data-duration="20"
+        data-width="1080"
+        data-height="1920"
+        data-fps="30"
+      >
+        <div class="grain"></div>
+        <div class="beam a"></div>
+        <div class="beam b"></div>
 
-      <section id="scene-1" class="frame" data-start="0" data-duration="4.5" data-track-index="0">
-        <div class="stack">
-          <div class="eyebrow">housing crisis</div>
-          <div class="headline">Housing got expensive because <span class="danger">supply got capped</span>.</div>
-          <div class="sub">Not inevitable. Not natural. Designed.</div>
-        </div>
-        <div class="bottom">
-          <div class="tag-row">
-            <div class="tag bad">scarcity</div>
-            <div class="tag bad">delays</div>
-            <div class="tag bad">higher prices</div>
+        <section id="scene-1" class="frame" data-start="0" data-duration="4.5" data-track-index="0">
+          <div class="stack">
+            <div class="eyebrow">housing crisis</div>
+            <div class="headline">Housing got expensive because <span class="danger">supply got capped</span>.</div>
+            <div class="sub">Not inevitable. Not natural. Designed.</div>
           </div>
-          <div class="footer-note">Demand kept rising. Homes didn’t.</div>
-        </div>
-      </section>
-
-      <section id="scene-2" class="frame" data-start="4.5" data-duration="4.5" data-track-index="0">
-        <div class="stack">
-          <div class="eyebrow">the cap</div>
-          <div class="headline">Zoning. Parking minimums. Height limits. Process theater.</div>
-          <div class="sub">We buried housing under rules until building felt impossible.</div>
-        </div>
-        <div class="tag-row">
-          <div class="tag bad">fewer homes</div>
-          <div class="tag bad">slower approvals</div>
-          <div class="tag bad">more pressure</div>
-        </div>
-      </section>
-
-      <section id="scene-3" class="frame" data-start="9" data-duration="5" data-track-index="0">
-        <div class="stack">
-          <div class="eyebrow">cause and effect</div>
-          <div class="headline">We strangled the pipeline — then acted shocked when prices exploded.</div>
-          <div class="sub">You can’t ban abundance and expect affordability.</div>
-        </div>
-        <div class="bottom">
-          <div class="big-call"><span class="danger">Cap supply</span><br/>→ <span class="danger">Spike prices</span></div>
-          <div class="footer-note">It’s not mysterious. It’s math.</div>
-        </div>
-      </section>
-
-      <section id="scene-4" class="frame" data-start="14" data-duration="6" data-track-index="0">
-        <div class="stack">
-          <div class="eyebrow">the fix</div>
-          <div class="headline"><span class="accent">Uncap the house.</span><br /><span class="good">Build more homes.</span></div>
-          <div class="sub">Lower the pressure. Cool prices. Let cities breathe.</div>
-        </div>
-        <div class="bottom">
-          <div class="tag-row">
-            <div class="tag good">more homes</div>
-            <div class="tag good">more choice</div>
-            <div class="tag good">less pressure</div>
+          <div class="bottom">
+            <div class="tag-row">
+              <div class="tag bad">scarcity</div>
+              <div class="tag bad">delays</div>
+              <div class="tag bad">higher prices</div>
+            </div>
+            <div class="footer-note">Demand kept rising. Homes didn’t.</div>
           </div>
-          <div class="big-call accent2">LET CITIES BREATHE</div>
-        </div>
-      </section>
+        </section>
 
-      <div id="progress" class="bar" data-start="0" data-duration="20" data-track-index="1"></div>
-      <div id="cover" class="cover" data-start="0" data-duration="20" data-track-index="2"></div>
+        <section id="scene-2" class="frame" data-start="4.5" data-duration="4.5" data-track-index="0">
+          <div class="stack">
+            <div class="eyebrow">the cap</div>
+            <div class="headline">Zoning. Parking minimums. Height limits. Process theater.</div>
+            <div class="sub">We buried housing under rules until building felt impossible.</div>
+          </div>
+          <div class="tag-row">
+            <div class="tag bad">fewer homes</div>
+            <div class="tag bad">slower approvals</div>
+            <div class="tag bad">more pressure</div>
+          </div>
+        </section>
+
+        <section id="scene-3" class="frame" data-start="9" data-duration="5" data-track-index="0">
+          <div class="stack">
+            <div class="eyebrow">cause and effect</div>
+            <div class="headline">We strangled the pipeline — then acted shocked when prices exploded.</div>
+            <div class="sub">You can’t ban abundance and expect affordability.</div>
+          </div>
+          <div class="bottom">
+            <div class="big-call"><span class="danger">Cap supply</span><br/>→ <span class="danger">Spike prices</span></div>
+            <div class="footer-note">It’s not mysterious. It’s math.</div>
+          </div>
+        </section>
+
+        <section id="scene-4" class="frame" data-start="14" data-duration="6" data-track-index="0">
+          <div class="stack">
+            <div class="eyebrow">the fix</div>
+            <div class="headline"><span class="accent">Uncap the house.</span><br /><span class="good">Build more homes.</span></div>
+            <div class="sub">Lower the pressure. Cool prices. Let cities breathe.</div>
+          </div>
+          <div class="bottom">
+            <div class="tag-row">
+              <div class="tag good">more homes</div>
+              <div class="tag good">more choice</div>
+              <div class="tag good">less pressure</div>
+            </div>
+            <div class="big-call accent2">LET CITIES BREATHE</div>
+          </div>
+        </section>
+
+        <div id="progress" class="bar" data-start="0" data-duration="20" data-track-index="1"></div>
+        <div id="cover" class="cover" data-start="0" data-duration="20" data-track-index="2"></div>
+      </div>
     </div>
 
     <script>

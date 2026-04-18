@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uncapping the House</title>
+    <style>
+      :root {
+        --bg: #050816;
+        --bg2: #0e1630;
+        --text: #f8fbff;
+        --muted: #9db0d4;
+        --accent: #81e6ff;
+        --accent2: #9c8cff;
+        --danger: #ff6b6b;
+        --good: #62f2bb;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        background: radial-gradient(circle at top left, rgba(129,230,255,0.16), transparent 24%), linear-gradient(180deg, var(--bg2), var(--bg));
+        color: var(--text);
+        overflow: hidden;
+      }
+      #stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: radial-gradient(circle at 20% 10%, rgba(129,230,255,0.1), transparent 25%), linear-gradient(180deg, #10182f 0%, #050816 100%);
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.08;
+        background-image: radial-gradient(rgba(255,255,255,0.45) 0.6px, transparent 0.6px);
+        background-size: 12px 12px;
+      }
+      .beam {
+        position: absolute;
+        inset: auto;
+        width: 900px;
+        height: 900px;
+        border-radius: 999px;
+        filter: blur(80px);
+        opacity: 0.18;
+      }
+      .beam.a { top: -240px; left: -180px; background: var(--accent); }
+      .beam.b { bottom: -320px; right: -160px; background: var(--accent2); }
+      .frame {
+        position: absolute;
+        inset: 0;
+        padding: 92px 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.28em;
+        font-size: 28px;
+        color: var(--muted);
+      }
+      .headline {
+        max-width: 1500px;
+        font-size: 128px;
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+      .sub {
+        max-width: 1160px;
+        font-size: 44px;
+        line-height: 1.22;
+        color: var(--muted);
+      }
+      .stack {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .tag-row {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        padding: 16px 24px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.05);
+        font-size: 34px;
+        color: var(--text);
+      }
+      .tag.bad { border-color: rgba(255,107,107,0.4); color: #ffd0d0; }
+      .tag.good { border-color: rgba(98,242,187,0.35); color: #cbffef; }
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+      }
+      .footer-note {
+        font-size: 30px;
+        color: var(--muted);
+      }
+      .big-call {
+        font-size: 118px;
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+      .accent { color: var(--accent); }
+      .accent2 { color: var(--accent2); }
+      .danger { color: var(--danger); }
+      .good { color: var(--good); }
+      .bar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 16px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+      }
+      .cover {
+        position: absolute;
+        inset: 0;
+        background: #050816;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="stage"
+      data-composition-id="uncapping-the-house"
+      data-start="0"
+      data-duration="20"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <div class="grain"></div>
+      <div class="beam a"></div>
+      <div class="beam b"></div>
+
+      <section id="scene-1" class="frame" data-start="0" data-duration="4.5" data-track-index="0">
+        <div class="stack">
+          <div class="eyebrow">housing crisis</div>
+          <div class="headline">Housing got expensive because <span class="danger">supply got capped</span>.</div>
+          <div class="sub">This wasn’t inevitable. It was designed — one limit, one rule, one veto at a time.</div>
+        </div>
+        <div class="bottom">
+          <div class="footer-note">Demand kept rising. Homes didn’t.</div>
+          <div class="tag-row">
+            <div class="tag bad">scarcity</div>
+            <div class="tag bad">delays</div>
+            <div class="tag bad">higher prices</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scene-2" class="frame" data-start="4.5" data-duration="4.5" data-track-index="0">
+        <div class="stack">
+          <div class="eyebrow">the cap</div>
+          <div class="headline">Zoning. Parking minimums. Height limits. Process theater.</div>
+          <div class="sub">We stacked restrictions on top of each other until building became a punishment.</div>
+        </div>
+        <div class="tag-row">
+          <div class="tag bad">fewer homes</div>
+          <div class="tag bad">slower approvals</div>
+          <div class="tag bad">more pressure</div>
+        </div>
+      </section>
+
+      <section id="scene-3" class="frame" data-start="9" data-duration="5" data-track-index="0">
+        <div class="stack">
+          <div class="eyebrow">cause and effect</div>
+          <div class="headline">We strangled the pipeline — then acted surprised when prices exploded.</div>
+          <div class="sub">You can’t ban growth and still expect abundance.</div>
+        </div>
+        <div class="bottom">
+          <div class="big-call"><span class="danger">Cap supply</span> → <span class="danger">Spike prices</span></div>
+          <div class="footer-note">It’s not mysterious. It’s math.</div>
+        </div>
+      </section>
+
+      <section id="scene-4" class="frame" data-start="14" data-duration="6" data-track-index="0">
+        <div class="stack">
+          <div class="eyebrow">the fix</div>
+          <div class="headline"><span class="accent">Uncap the house.</span><br /><span class="good">Build more homes.</span></div>
+          <div class="sub">Lower the pressure. Let prices cool. Let neighborhoods grow. Let cities breathe.</div>
+        </div>
+        <div class="bottom">
+          <div class="tag-row">
+            <div class="tag good">more homes</div>
+            <div class="tag good">more choice</div>
+            <div class="tag good">less pressure</div>
+          </div>
+          <div class="big-call accent2">LET CITIES BREATHE</div>
+        </div>
+      </section>
+
+      <div id="progress" class="bar" data-start="0" data-duration="20" data-track-index="1"></div>
+      <div id="cover" class="cover" data-start="0" data-duration="20" data-track-index="2"></div>
+    </div>
+
+    <script>
+      const scenes = Array.from(document.querySelectorAll('[id^="scene-"]'));
+      const progress = document.getElementById('progress');
+      const cover = document.getElementById('cover');
+      const totalDuration = 20;
+
+      scenes.forEach((scene, index) => {
+        const start = Number(scene.dataset.start || 0);
+        const duration = Number(scene.dataset.duration || 0);
+        scene.style.opacity = '0';
+        scene.style.transform = 'translateY(36px) scale(0.985)';
+        scene.animate(
+          [
+            { opacity: 0, transform: 'translateY(36px) scale(0.985)' },
+            { opacity: 1, transform: 'translateY(0px) scale(1)', offset: 0.18 },
+            { opacity: 1, transform: 'translateY(0px) scale(1)', offset: 0.82 },
+            { opacity: index === scenes.length - 1 ? 1 : 0, transform: index === scenes.length - 1 ? 'translateY(0px) scale(1)' : 'translateY(-18px) scale(1.01)' }
+          ],
+          {
+            duration: duration * 1000,
+            delay: start * 1000,
+            fill: 'forwards',
+            easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)'
+          }
+        );
+      });
+
+      progress.animate(
+        [
+          { width: '0%' },
+          { width: '100%' }
+        ],
+        {
+          duration: totalDuration * 1000,
+          fill: 'forwards',
+          easing: 'linear'
+        }
+      );
+
+      cover.animate(
+        [
+          { opacity: 1 },
+          { opacity: 0, offset: 0.06 },
+          { opacity: 0, offset: 0.94 },
+          { opacity: 1 }
+        ],
+        {
+          duration: totalDuration * 1000,
+          fill: 'forwards',
+          easing: 'ease'
+        }
+      );
+    </script>
+  </body>
+</html>

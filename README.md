@@ -1,34 +1,28 @@
 # HyperFrames Video
 
 ## Project
-**Uncapping the House** — a 20-second hype video concept.
+**Uncap the House** — a 20-second mobile-first hype video for the No Cap Fund idea.
 
-## Creative direction
-A dramatic, high-energy explainer / manifesto-style clip about removing the artificial limits that keep housing scarce and expensive.
+## Core thesis
+The U.S. House of Representatives has been frozen at 435 seats since 1929 while the population tripled.
+That means representation collapsed.
+The fix: uncap the House.
 
 ## Tone
 - bold
 - urgent
-- pro-building
+- civic but not stodgy
+- movement energy
 - modern / internet-native
 
 ## Format
 - 20 seconds
-- 16:9 by default for first draft
-- easy to adapt to 9:16 later
+- 9:16 vertical
+- mobile-first preview
 
-## Core message
-The crisis is not a law of nature.
-We capped the house.
-We can uncap it.
-Build more. Lower pressure. Let cities breathe.
-
-## Draft structure
-1. Problem framing
-2. Show the cap / choke point
-3. Flip into action
-4. End with slogan / thesis
-
-## Next commands
-- `npx hyperframes preview`
-- `npx hyperframes render`
+## Message beats
+1. Why 435?
+2. The population tripled
+3. Representation got weaker
+4. One representative now speaks for nearly 800,000 people
+5. Uncap the House

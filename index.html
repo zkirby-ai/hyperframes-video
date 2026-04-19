@@ -6,14 +6,15 @@
     <title>Uncap the House</title>
     <style>
       :root {
-        --bg: #050816;
-        --bg2: #0d1430;
-        --text: #f8fbff;
-        --muted: #a6b3d3;
-        --accent: #7fe6ff;
-        --accent2: #8f84ff;
-        --danger: #ff7a7a;
-        --good: #63f0ba;
+        --bg: #07111d;
+        --bg2: #121f3a;
+        --paper: rgba(255,255,255,0.06);
+        --text: #f9fbff;
+        --muted: #c5cedf;
+        --red: #ef4444;
+        --blue: #4f83ff;
+        --gold: #f4c15d;
+        --line: rgba(255,255,255,0.16);
       }
       * { box-sizing: border-box; }
       html, body {
@@ -21,14 +22,14 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background: #050816;
+        background: #07111d;
         font-family: Inter, ui-sans-serif, system-ui, sans-serif;
       }
       body {
         display: grid;
         place-items: center;
         background:
-          radial-gradient(circle at top left, rgba(127,230,255,0.12), transparent 24%),
+          radial-gradient(circle at top left, rgba(79,131,255,0.16), transparent 24%),
           linear-gradient(180deg, var(--bg2), var(--bg));
       }
       .phone-shell {
@@ -46,49 +47,68 @@
         aspect-ratio: 9 / 16;
         overflow: hidden;
         background:
-          radial-gradient(circle at 20% 10%, rgba(127,230,255,0.09), transparent 25%),
-          linear-gradient(180deg, #10182f 0%, #050816 100%);
+          linear-gradient(180deg, #16284a 0%, #0b1525 100%);
         color: var(--text);
       }
       .grain {
         position: absolute;
         inset: 0;
-        opacity: 0.07;
-        background-image: radial-gradient(rgba(255,255,255,0.45) 0.6px, transparent 0.6px);
+        opacity: 0.06;
+        background-image: radial-gradient(rgba(255,255,255,0.5) 0.6px, transparent 0.6px);
         background-size: 1.1% 0.65%;
       }
-      .beam {
+      .flag-glow {
         position: absolute;
-        border-radius: 999px;
-        filter: blur(8vw);
-        opacity: 0.16;
+        inset: 0;
+        background:
+          radial-gradient(circle at 15% 10%, rgba(79,131,255,0.18), transparent 26%),
+          radial-gradient(circle at 85% 88%, rgba(239,68,68,0.16), transparent 28%);
       }
-      .beam.a { top: -14%; left: -18%; width: 64%; height: 34%; background: var(--accent); }
-      .beam.b { bottom: -12%; right: -18%; width: 70%; height: 38%; background: var(--accent2); }
+      .stripes {
+        position: absolute;
+        inset: 0;
+        opacity: 0.08;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.9) 0,
+          rgba(255,255,255,0.9) 2.7%,
+          transparent 2.7%,
+          transparent 6.2%
+        );
+      }
       .frame {
         position: absolute;
         inset: 0;
-        padding: max(env(safe-area-inset-top), 5.5vh) 6.6vw max(env(safe-area-inset-bottom), 6vh);
+        padding: max(env(safe-area-inset-top), 5.2vh) 6.6vw max(env(safe-area-inset-bottom), 6vh);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
+      .top-rule {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--red), var(--gold), var(--blue));
+        opacity: 0.95;
+      }
       .stack {
         display: flex;
         flex-direction: column;
-        gap: 1.4vh;
+        gap: 1.35vh;
       }
       .eyebrow {
         text-transform: uppercase;
-        letter-spacing: 0.24em;
+        letter-spacing: 0.26em;
         font-size: clamp(10px, 1.35vw, 14px);
-        color: var(--muted);
+        color: var(--gold);
+        font-weight: 700;
       }
       .headline {
-        font-size: clamp(34px, 7.9vw, 80px);
+        font-size: clamp(35px, 8vw, 82px);
         font-weight: 900;
         line-height: 0.92;
         letter-spacing: -0.06em;
+        text-transform: uppercase;
       }
       .sub {
         font-size: clamp(16px, 3.1vw, 29px);
@@ -96,8 +116,24 @@
         color: var(--muted);
         max-width: 94%;
       }
+      .stat-card {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 18px 18px 16px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+      }
+      .stat-label {
+        font-size: clamp(10px, 1.4vw, 14px);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
       .stat {
-        font-size: clamp(48px, 12vw, 124px);
+        font-size: clamp(52px, 12vw, 124px);
         font-weight: 900;
         letter-spacing: -0.08em;
         line-height: 0.9;
@@ -110,13 +146,16 @@
       .tag {
         padding: 10px 14px;
         border-radius: 999px;
-        border: 1px solid rgba(255,255,255,0.12);
-        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.16);
+        background: rgba(255,255,255,0.06);
         font-size: clamp(12px, 2.2vw, 20px);
         color: var(--text);
+        text-transform: uppercase;
+        font-weight: 700;
       }
-      .tag.bad { border-color: rgba(255,122,122,0.4); color: #ffd0d0; }
-      .tag.good { border-color: rgba(99,240,186,0.35); color: #cbffef; }
+      .tag.red { border-color: rgba(239,68,68,0.45); color: #ffd0d0; }
+      .tag.blue { border-color: rgba(79,131,255,0.45); color: #d9e4ff; }
+      .tag.gold { border-color: rgba(244,193,93,0.45); color: #ffe8af; }
       .bottom {
         display: flex;
         flex-direction: column;
@@ -128,27 +167,27 @@
         color: var(--muted);
       }
       .big-call {
-        font-size: clamp(32px, 6.7vw, 70px);
+        font-size: clamp(34px, 6.9vw, 72px);
         font-weight: 900;
         line-height: 0.92;
         letter-spacing: -0.06em;
+        text-transform: uppercase;
       }
-      .accent { color: var(--accent); }
-      .accent2 { color: var(--accent2); }
-      .danger { color: var(--danger); }
-      .good { color: var(--good); }
+      .red { color: var(--red); }
+      .blue { color: var(--blue); }
+      .gold { color: var(--gold); }
       .bar {
         position: absolute;
         left: 0;
         bottom: 0;
         height: 0.9vh;
         min-height: 6px;
-        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        background: linear-gradient(90deg, var(--red), var(--gold), var(--blue));
       }
       .cover {
         position: absolute;
         inset: 0;
-        background: #050816;
+        background: #07111d;
         pointer-events: none;
       }
     </style>
@@ -157,7 +196,7 @@
     <div class="phone-shell">
       <div
         id="stage"
-        data-composition-id="uncap-the-house"
+        data-composition-id="uncap-the-house-political"
         data-start="0"
         data-duration="20"
         data-width="1080"
@@ -165,59 +204,66 @@
         data-fps="30"
       >
         <div class="grain"></div>
-        <div class="beam a"></div>
-        <div class="beam b"></div>
+        <div class="flag-glow"></div>
+        <div class="stripes"></div>
 
         <section id="scene-1" class="frame" data-start="0" data-duration="4.5" data-track-index="0">
           <div class="stack">
-            <div class="eyebrow">representation</div>
-            <div class="headline">Why do <span class="accent">330+ million</span> Americans still have only <span class="danger">435</span> representatives?</div>
-            <div class="sub">That number has been frozen for almost a century.</div>
+            <div class="top-rule"></div>
+            <div class="eyebrow">the people’s house</div>
+            <div class="headline">Why do <span class="blue">330+ million</span> Americans still have only <span class="red">435</span> representatives?</div>
+            <div class="sub">The House was frozen almost a century ago. America wasn’t.</div>
           </div>
           <div class="bottom">
-            <div class="stat danger">435</div>
-            <div class="footer-note">The House was capped in 1929.</div>
+            <div class="stat-card">
+              <div class="stat-label">House seats</div>
+              <div class="stat red">435</div>
+            </div>
+            <div class="footer-note">Capped in 1929. Still capped today.</div>
           </div>
         </section>
 
         <section id="scene-2" class="frame" data-start="4.5" data-duration="4.5" data-track-index="0">
           <div class="stack">
-            <div class="eyebrow">the problem</div>
-            <div class="headline">The population <span class="danger">tripled.</span><br />The cap stayed.</div>
-            <div class="sub">America grew. Representation didn’t.</div>
+            <div class="top-rule"></div>
+            <div class="eyebrow">a century later</div>
+            <div class="headline">The population <span class="red">tripled.</span><br />The cap stayed.</div>
+            <div class="sub">America grew. Representation got diluted.</div>
           </div>
           <div class="tag-row">
-            <div class="tag bad">bigger country</div>
-            <div class="tag bad">same chamber</div>
-            <div class="tag bad">weaker voice</div>
+            <div class="tag red">more people</div>
+            <div class="tag blue">same seats</div>
+            <div class="tag gold">less voice</div>
           </div>
         </section>
 
         <section id="scene-3" class="frame" data-start="9" data-duration="5" data-track-index="0">
           <div class="stack">
-            <div class="eyebrow">the cost</div>
-            <div class="headline">One representative now speaks for <span class="accent2">nearly 800,000</span> people.</div>
-            <div class="sub">That is not close representation. That is democratic shrinkflation.</div>
+            <div class="top-rule"></div>
+            <div class="eyebrow">representation collapse</div>
+            <div class="headline">One representative now speaks for <span class="gold">nearly 800,000</span> people.</div>
+            <div class="sub">That’s not a House close to the people. That’s distance by design.</div>
           </div>
           <div class="bottom">
-            <div class="big-call"><span class="danger">Fewer seats</span><br/>→ <span class="danger">less voice</span></div>
+            <div class="big-call"><span class="red">Fewer seats</span><br />→ <span class="red">weaker democracy</span></div>
             <div class="footer-note">The people’s House got less representative.</div>
           </div>
         </section>
 
         <section id="scene-4" class="frame" data-start="14" data-duration="6" data-track-index="0">
           <div class="stack">
+            <div class="top-rule"></div>
             <div class="eyebrow">the fix</div>
-            <div class="headline"><span class="accent">Uncap the House.</span><br /><span class="good">More seats. More voices.</span></div>
-            <div class="sub">A bigger country needs a more representative House.</div>
+            <div class="headline"><span class="blue">Uncap the House.</span><br /><span class="gold">More seats. More voices.</span></div>
+            <div class="sub">A bigger country needs a more representative Congress.</div>
           </div>
           <div class="bottom">
             <div class="tag-row">
-              <div class="tag good">more representation</div>
-              <div class="tag good">more accountability</div>
-              <div class="tag good">more democracy</div>
+              <div class="tag blue">more representation</div>
+              <div class="tag gold">more accountability</div>
+              <div class="tag red">more democracy</div>
             </div>
-            <div class="big-call accent2">UNCAP THE HOUSE</div>
+            <div class="big-call blue">Uncap the House</div>
           </div>
         </section>
 
